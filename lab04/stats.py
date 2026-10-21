@@ -1,7 +1,5 @@
 def parse_record(line: str) -> dict:
     parts = line.strip().split(';')
-    if not line.strip():
-        continue
     if len(parts) != 3:
         raise ValueError('Неверное кол-во полей')
     city, temp1, date = parts
@@ -15,11 +13,11 @@ def parse_record(line: str) -> dict:
 
 def read_valid(lines: list[str]) -> list[dict]:
     res = []
-    for l in lines:
-        if not l.strip():
+    for line in lines:
+        if not line.strip():
             continue
         try:
-            rec = parse_record(l)
+            rec = parse_record(line)
             res.append(rec)
         except ValueError:
             continue
