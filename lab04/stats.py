@@ -40,4 +40,4 @@ def warmest_city(records: list[dict]) -> str:
     city_temps = average_by_city(records)
     if not city_temps:
         return ''
-    return max(city_temps.keys(), key=lambda c: city_temps[c])
+    return min(city_temps, key=lambda c: (-city_temps[c], c))
