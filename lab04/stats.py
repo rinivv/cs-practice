@@ -5,6 +5,7 @@ def parse_record(line: str) -> dict:
     city, temp1, date = parts
     if city == '' or date == '':
         raise ValueError('Пустое значение города или даты')
+    temp1 = temp1.replace(',','.')
     try:
         temp = float(temp1)
     except ValueError:
