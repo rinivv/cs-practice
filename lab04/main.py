@@ -6,7 +6,8 @@ lines = sys.stdin.read().splitlines()
 
 valid_rec = read_valid(lines)
 n_valid = len(valid_rec)
-n_invalid = len(lines) - n_valid
+n_emp = sum(1 for line in lines if line == '')
+n_invalid = len(lines) - n_valid - n_emp
 
 city_ave = average_by_city(valid_rec)
 if city_ave:
