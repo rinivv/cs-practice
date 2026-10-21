@@ -19,6 +19,3 @@ else:
 print(n_valid)
 print(n_invalid)
 print(f'{res_temp:.1f}')
-
-if __name__ == "__main__":
-    main()
