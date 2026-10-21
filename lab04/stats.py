@@ -32,3 +32,9 @@ def average_by_city(records: list[dict]) -> dict:
         sum_temp[city] = sum_temp.get(city,0) + temp
         cnt[city] = cnt.get(city,0) + 1
     return {city: round(sum_temp[city]/cnt[city]) for city in sum_temp}
+
+def warmest_city(records: list[dict]) -> str:
+    city_temps = average_by_city(records)
+    if not city_temps:
+        return ''
+    return max(city_temps.keys(), key=lambda c: city_temps[c])
