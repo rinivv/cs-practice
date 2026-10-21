@@ -24,14 +24,17 @@ def read_valid(lines: list[str]) -> list[dict]:
     return res
 
 def average_by_city(records: list[dict]) -> dict:
-    sum_temp = {}
+    total = {}
     cnt = {}
     for i in records:
         city = i['city']
         temp= i['temperature']
-        sum_temp[city] = sum_temp.get(city,0) + temp
+        total[city] = total.get(city,0) + temp
         cnt[city] = cnt.get(city,0) + 1
-    return {city: round(sum_temp[city]/cnt[city]) for city in sum_temp}
+    ave = {}
+    for city in total:
+        ave[city] = round(total[city]/cnt[city], 1)
+    return ave
 
 def warmest_city(records: list[dict]) -> str:
     city_temps = average_by_city(records)
