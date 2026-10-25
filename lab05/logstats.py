@@ -14,3 +14,16 @@ def parse_event(line: str) -> dict:
     return {"time": time,
             "level": level,
             "message": message}
+
+def count_levels(lines) -> dict:
+    cnt = {}
+    for line in lines:
+        if not line.strip():
+            continue
+        try:
+            event = parse_event(line)
+            level = event["level"]
+            cnt[level] = cnt.get(level, 0) + 1
+        except ValueError:
+            cnt["BROKEN"] = cnt.get("BROKEN", 0) + 1
+    return cnt
