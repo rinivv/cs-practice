@@ -13,7 +13,7 @@ def parse_event(line: str) -> dict:
             "level": level,
             "message": message}
 
-def count_levels(lines) -> dict:
+def count_levels(lines: list[str]) -> dict:
     cnt = {}
     for line in lines:
         if not line.strip():
@@ -26,7 +26,7 @@ def count_levels(lines) -> dict:
             cnt["BROKEN"] = cnt.get("BROKEN", 0) + 1
     return cnt
 
-def top_errors(lines, n: int) -> list:
+def top_errors(lines: list[str], n: int) -> list[list]:
     error_cnt = {}
     for line in lines:
         if not line.strip():
@@ -41,3 +41,16 @@ def top_errors(lines, n: int) -> list:
     res = [[message2, cnt] for message2, cnt in error_cnt.items()]
     res.sort(key=lambda x: (-x[1], x[0]))
     return res[:n]
+
+def format_report(counts: dict, errors: list[list]) -> str:
+    lines = ["Отчёт по журналу", ""]
+    for level in sorted(counts.keys()):
+        lines.append(f"{level}: {counts[level]}")
+    lines.append("")
+    lines.append("Частые ошибки:")
+    if not errors:
+        pass
+    else:
+        for message, count in errors:
+            lines.append(f"- {message} — {count}")
+    return "\n".join(lines) + "\n"
