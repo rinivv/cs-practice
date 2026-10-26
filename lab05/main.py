@@ -1,6 +1,6 @@
 import logstats
 
-file_path = input().strip()
+path = input().strip()
 all_lines = 0
 error_lines = 0
 broken_lines = 0
