@@ -34,4 +34,4 @@ with open(path, encoding="utf-8") as log:
 text = logstats.format_report(cnt, top_error)
 
 with open("report.txt", "w", encoding="utf-8") as log:
-    log.write(report_text)
+    log.write(text)
