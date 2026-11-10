@@ -25,6 +25,7 @@ def conv_for_f2(val_str:str):
     except ValueError:
         pass
     try:
+        val_str.replace(',','.')
         return float(val_str)
     except ValueError:
         pass
