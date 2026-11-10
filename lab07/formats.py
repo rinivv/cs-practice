@@ -14,7 +14,7 @@ def csv_to_records(text: str) -> list[dict]:
         records.append(record)
     return records
 
-def conv_for_f2(val:str):
+def conv_for_f2(val_str:str):
     val_low = val_str.lower()
     if val_low in ('true','yes'):
         return True
@@ -28,7 +28,7 @@ def conv_for_f2(val:str):
         return float(val_str)
     except ValueError:
         pass
-    return val
+    return val_str
     
 def parse_settings(lines: list[str]) -> dict:
     result = {}
