@@ -11,3 +11,43 @@ def csv_to_records(text: str) -> list[dict]:
         record = dict(zip(heads, values))
         records.append(record)
     return records
+
+def conv_for_f2(val:str):
+    val_low = val_str.lower()
+    if val_low in ('true','yes'):
+        return True
+    if val_low in ('false','no'):
+        return False
+    try:
+        return int(val_str)
+    except ValueError:
+        pass
+    try:
+        return float(val_str)
+    except ValueError:
+        pass
+    return val
+    
+def parse_settings(lines: list[str]) -> dict:
+    result = {}
+    cur_key = None
+    for line in lines:
+        line = line.split('#')[0].strip()
+        if not line:
+            continue
+        if line[0] == '-':
+            if cur_key is not None:
+                val_str = line[1:].strip()
+                result[cur_key].append(conv_for_f2(val_str))
+            continue
+        if ':' in line:
+            key, val = line.split(':', 1)
+            key = key.strip()
+            val = val.strip()
+            if val:
+                result[key] = conv_for_f2(val)
+                cur_key = None
+            else:
+                result[key] = []
+                cur_key = key
+    return result
