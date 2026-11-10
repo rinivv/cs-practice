@@ -1,3 +1,5 @@
+import json
+
 def csv_to_records(text: str) -> list[dict]:
     if not text.strip():
         return []
@@ -62,3 +64,6 @@ def merge_by_key(rows: list[dict], extra: dict, key: str = 'id') -> list[dict]:
         else:
             merged_records.append(row)
     return merged_records
+
+def records_to_json(records: list[dict]) -> str:
+    return json.dumps(records, indent=2, ensure_ascii=False, sort_keys=True)
