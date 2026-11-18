@@ -30,3 +30,52 @@ print("Первая строка:", temperatures[0, :])
 print("Последний столбец:", temperatures[:, -1])
 print("Первые две строки без первого столбца:\n", temperatures[:2, 1:])
 print("Центральный фрагмент 2x2:\n", temperatures[0:2, 1:3])
+
+print("#4")
+matrix = np.arange(1, 26).reshape(5, 5)
+f1 = matrix[:3, :]
+print("Первые три строки:\n", f1, "\nShape:", f1.shape)
+f2 = matrix[-2:, :]
+print("Последние две строки:\n", f2, "\nShape:", f2.shape)
+f3 = matrix[:, :2]
+print("Первые два столбца:\n", f3, "\nShape:", f3.shape)
+f4 = matrix[1:4, 2:5] 
+print("Фрагмент строки 1-3, столбцы 2-4:\n", f4, "\nShape:", f4.shape)
+f5 = matrix[-2:, -2:]
+print("Угловой блок 2x2 (правый нижний):\n", f5, "\nShape:", f5.shape)
+
+print("#5")
+vector = np.array([10, 20, 30, 40, 50])
+vector[1:4] = 0
+print("Пример 1", vector)
+small_matrix = np.arange(1, 10).reshape(3, 3)
+small_matrix[0, :] = -1
+small_matrix[1:, 1:] = 9
+print("Пример 2", small_matrix)
+
+changed_hours = hours.copy()
+changed_hours[2:5] = 99
+changed_hours[::2] = -1
+print("changed_hours:", changed_hours)
+print("исходный hours:", hours)
+
+# .copy() нужен для создания независимой копии массива,
+# чтобы не работать с ссылкой на старый массив.
+
+changed_matrix = matrix.copy()
+changed_matrix[1, :] = 0
+changed_matrix[:, -1] = -1
+changed_matrix[1:4, 1:4] = 100
+print("Итоговая матрица:", changed_matrix)
+print("Исходная матрица:", matrix)
+
+print("#6")
+numbers = np.arange(12) # Числа от 0 до 11
+table = numbers.reshape(3, 4)
+transposed = table.T
+print("numbers:", numbers.shape)
+print("table:", table.shape)
+print("transposed:", transposed.shape)
+
+# reshape(3, 4) работает, потому что в numbers 12 элементов (3*4=12).
+# reshape(5, 3) не работает, потому что 5*3 = 15, 15>12 (нет столько элементов)
